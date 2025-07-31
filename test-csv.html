@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste CSV</title>
+</head>
+<body>
+    <h1>Teste de Carregamento CSV</h1>
+    <div id="result"></div>
+    
+    <script>
+        async function testCSV() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Testando carregamento...</p>';
+            
+            try {
+                const response = await fetch('results/edsp_schools_20250730_110927.csv');
+                console.log('Response status:', response.status);
+                console.log('Response ok:', response.ok);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const text = await response.text();
+                console.log('CSV size:', text.length);
+                console.log('First 500 chars:', text.substring(0, 500));
+                
+                const lines = text.split('\n');
+                console.log('Total lines:', lines.length);
+                console.log('First line:', lines[0]);
+                console.log('Second line:', lines[1]);
+                
+                resultDiv.innerHTML = `
+                    <p>✅ CSV carregado com sucesso!</p>
+                    <p>Tamanho: ${text.length} caracteres</p>
+                    <p>Linhas: ${lines.length}</p>
+                    <p>Primeira linha: ${lines[0]}</p>
+                    <p>Segunda linha: ${lines[1]}</p>
+                `;
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                resultDiv.innerHTML = `<p>❌ Erro: ${error.message}</p>`;
+            }
+        }
+        
+        testCSV();
+    </script>
+</body>
+</html> 
