@@ -187,7 +187,7 @@
                     title="Dashboard EDSP - Escolas de São Paulo" 
                     width="1140" 
                     height="541.25" 
-                    src="https://app.powerbi.com/reportEmbed?reportId=4d4f1081-1abc-4966-b46b-729541502636&autoAuth=true&embeddedDemo=true" 
+                    src="https://app.powerbi.com/reportEmbed?reportId=4d4f1081-1abc-4966-b46b-729541502636&autoAuth=true&ctid=cf166868-5174-40d8-a5ae-831895a748be" 
                     frameborder="0" 
                     allowFullScreen="true">
                 </iframe>
@@ -288,18 +288,18 @@
             `;
             
             // Aguardar carregamento do iframe
-            setTimeout(() => {
-                container.innerHTML = `
-                    <iframe 
-                        title="Dashboard EDSP - Escolas de São Paulo" 
-                        width="1140" 
-                        height="541.25" 
-                        src="https://app.powerbi.com/reportEmbed?reportId=4d4f1081-1abc-4966-b46b-729541502636&autoAuth=true&embeddedDemo=true" 
-                        frameborder="0" 
-                        allowFullScreen="true">
-                    </iframe>
-                `;
-            }, 2000);
+                         setTimeout(() => {
+                 container.innerHTML = `
+                     <iframe 
+                         title="Dashboard EDSP - Escolas de São Paulo" 
+                         width="1140" 
+                         height="541.25" 
+                         src="https://app.powerbi.com/reportEmbed?reportId=4d4f1081-1abc-4966-b46b-729541502636&autoAuth=true&ctid=cf166868-5174-40d8-a5ae-831895a748be" 
+                         frameborder="0" 
+                         allowFullScreen="true">
+                     </iframe>
+                 `;
+             }, 2000);
         });
     </script>
 </body>

@@ -166,13 +166,13 @@ class BrowserManager:
                         try:
                             next_button = await page.query_selector(selector)
                             if next_button:
-                                break
+                        break
                         except:
                             continue
 
                     if next_button:
                         try:
-                            await next_button.click()
+                        await next_button.click()
                             await page.wait_for_timeout(3000)  # Increased wait time
 
                             # Verify we actually moved to the next page
@@ -181,7 +181,7 @@ class BrowserManager:
                                 await page.wait_for_selector(
                                     "#tabelabusca", timeout=10000
                                 )
-                                current_page += 1
+                        current_page += 1
 
                                 structured_logger.bind_context(
                                     action="navigation_step",
@@ -223,7 +223,7 @@ class BrowserManager:
                 ).warning(
                     f"❌ Failed to reach page {target_page}, reached page {current_page}"
                 )
-                return False
+            return False
 
             return True
 
@@ -316,12 +316,12 @@ class BrowserManager:
 
             for link in school_links:
                 try:
-                    href = await link.get_attribute("href")
-                    if href and "DetalhesEscola" in href:
-                        # Normalize URL format
-                        if href.startswith("/"):
-                            href = f"https://transparencia.educacao.sp.gov.br{href}"
-                        links.append(href)
+                href = await link.get_attribute("href")
+                if href and "DetalhesEscola" in href:
+                    # Normalize URL format
+                    if href.startswith("/"):
+                        href = f"https://transparencia.educacao.sp.gov.br{href}"
+                    links.append(href)
                 except Exception as e:
                     structured_logger.bind_context(
                         action="link_extraction_error"
@@ -415,7 +415,7 @@ class BrowserManager:
 
             for info_alunos_div in info_alunos_divs:
                 alunos_div = info_alunos_div.find("div", class_="alunos")
-                if alunos_div:
+            if alunos_div:
                     h2_title = alunos_div.find("h2")
                     if h2_title:
                         title_text = h2_title.get_text(strip=True)
@@ -425,8 +425,8 @@ class BrowserManager:
                             quantidade_alunos = alunos_div.find(
                                 "span", id="quantidade-alunos"
                             )
-                            if quantidade_alunos:
-                                total_students = quantidade_alunos.get_text(strip=True)
+                if quantidade_alunos:
+                    total_students = quantidade_alunos.get_text(strip=True)
 
                             # Extrair dados de faixa etária da tabela
                             table = info_alunos_div.find("table")
@@ -732,56 +732,56 @@ class BrowserManager:
                 and not ideb_score_high_school
                 and not idesp_score_high_school
             ):
-                score_ul = conteudo_div.find("ul")
-                if score_ul:
-                    score_items = score_ul.find_all("li")
-                    for item in score_items:
-                        # Check if this is "Anos finais" (Final Years)
-                        title_element = item.find("h2", class_="titulo-classificacao")
-                        if title_element:
-                            title_text = title_element.get_text(strip=True)
+            score_ul = conteudo_div.find("ul")
+            if score_ul:
+                score_items = score_ul.find_all("li")
+                for item in score_items:
+                    # Check if this is "Anos finais" (Final Years)
+                    title_element = item.find("h2", class_="titulo-classificacao")
+                    if title_element:
+                        title_text = title_element.get_text(strip=True)
 
                             if title_text == "Anos finais":
-                                # Extract IDEB score for final years
-                                ideb_nota = item.find("p", id="ideb-nota")
-                                if ideb_nota:
+                            # Extract IDEB score for final years
+                            ideb_nota = item.find("p", id="ideb-nota")
+                            if ideb_nota:
                                     ideb_score_final_years = ideb_nota.get_text(
                                         strip=True
                                     )
-                                    # Replace "-" with empty string if no data
-                                    if ideb_score_final_years == "-":
-                                        ideb_score_final_years = ""
+                                # Replace "-" with empty string if no data
+                                if ideb_score_final_years == "-":
+                                    ideb_score_final_years = ""
 
-                                # Extract IDESP score for final years
-                                idesp_nota = item.find("p", id="idesp-nota")
-                                if idesp_nota:
-                                    idesp_score_final_years = idesp_nota.get_text(
-                                        strip=True
-                                    )
-                                    # Replace "-" with empty string if no data
-                                    if idesp_score_final_years == "-":
-                                        idesp_score_final_years = ""
+                            # Extract IDESP score for final years
+                            idesp_nota = item.find("p", id="idesp-nota")
+                            if idesp_nota:
+                                idesp_score_final_years = idesp_nota.get_text(
+                                    strip=True
+                                )
+                                # Replace "-" with empty string if no data
+                                if idesp_score_final_years == "-":
+                                    idesp_score_final_years = ""
 
                             elif title_text == "Ensino Médio":
-                                # Extract IDEB score for high school
-                                ideb_nota = item.find("p", id="ideb-nota")
-                                if ideb_nota:
+                            # Extract IDEB score for high school
+                            ideb_nota = item.find("p", id="ideb-nota")
+                            if ideb_nota:
                                     ideb_score_high_school = ideb_nota.get_text(
                                         strip=True
                                     )
-                                    # Replace "-" with empty string if no data
-                                    if ideb_score_high_school == "-":
-                                        ideb_score_high_school = ""
+                                # Replace "-" with empty string if no data
+                                if ideb_score_high_school == "-":
+                                    ideb_score_high_school = ""
 
-                                # Extract IDESP score for high school
-                                idesp_nota = item.find("p", id="idesp-nota")
-                                if idesp_nota:
-                                    idesp_score_high_school = idesp_nota.get_text(
-                                        strip=True
-                                    )
-                                    # Replace "-" with empty string if no data
-                                    if idesp_score_high_school == "-":
-                                        idesp_score_high_school = ""
+                            # Extract IDESP score for high school
+                            idesp_nota = item.find("p", id="idesp-nota")
+                            if idesp_nota:
+                                idesp_score_high_school = idesp_nota.get_text(
+                                    strip=True
+                                )
+                                # Replace "-" with empty string if no data
+                                if idesp_score_high_school == "-":
+                                    idesp_score_high_school = ""
 
             # Fallback extraction for total students if info-alunos not found
             if not total_students:
@@ -946,13 +946,13 @@ class BrowserManager:
 
         try:
             # Navigate to the page with better error handling
-            try:
-                await page.goto(
-                    self.config.base_url,
-                    wait_until="domcontentloaded",
-                    timeout=self.config.timeout,
-                )
-                await page.wait_for_timeout(5000)
+        try:
+            await page.goto(
+                self.config.base_url,
+                wait_until="domcontentloaded",
+                timeout=self.config.timeout,
+            )
+            await page.wait_for_timeout(5000)
             except Exception as e:
                 structured_logger.bind_context(
                     action="page_navigation_error", page_num=page_num
@@ -970,10 +970,10 @@ class BrowserManager:
             # Navigate to specific page if needed
             if page_num > 1:
                 try:
-                    if not await self.navigate_to_page_robust(page, page_num):
-                        structured_logger.bind_context(
-                            action="navigation_failed", page_num=page_num
-                        ).warning(f"⚠️ Could not navigate to page {page_num}")
+                if not await self.navigate_to_page_robust(page, page_num):
+                    structured_logger.bind_context(
+                        action="navigation_failed", page_num=page_num
+                    ).warning(f"⚠️ Could not navigate to page {page_num}")
                         return []
                 except Exception as e:
                     structured_logger.bind_context(
@@ -983,7 +983,7 @@ class BrowserManager:
 
             # Extract school links
             try:
-                school_links = await self.extract_school_links(page)
+            school_links = await self.extract_school_links(page)
             except Exception as e:
                 structured_logger.bind_context(
                     action="link_extraction_error", page_num=page_num
@@ -1007,11 +1007,11 @@ class BrowserManager:
 
                 if tasks:
                     try:
-                        results = await asyncio.gather(*tasks, return_exceptions=True)
+                    results = await asyncio.gather(*tasks, return_exceptions=True)
 
-                        for result in results:
-                            if isinstance(result, dict):
-                                page_results.append(result)
+                    for result in results:
+                        if isinstance(result, dict):
+                            page_results.append(result)
                             elif isinstance(result, Exception):
                                 structured_logger.bind_context(
                                     action="school_processing_error"
@@ -1028,7 +1028,7 @@ class BrowserManager:
 
         finally:
             try:
-                await page.close()
+            await page.close()
             except:
                 pass
 
