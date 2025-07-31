@@ -34,7 +34,7 @@ Este Código de Conduta se aplica tanto em espaços do projeto quanto em espaço
 
 ## Aplicação
 
-Casos de comportamento abusivo, de assédio ou inaceitável podem ser relatados entrando em contato com a equipe do projeto em [INSERIR EMAIL]. Todas as reclamações serão revisadas e investigadas e resultarão em uma resposta que é considerada necessária e apropriada às circunstâncias. A equipe do projeto é obrigada a manter a confidencialidade em relação ao relator de um incidente.
+Casos de comportamento abusivo, de assédio ou inaceitável podem ser relatados entrando em contato com a equipe do projeto em felipe.versiane@institutoanexo.com.br. Todas as reclamações serão revisadas e investigadas e resultarão em uma resposta que é considerada necessária e apropriada às circunstâncias. A equipe do projeto é obrigada a manter a confidencialidade em relação ao relator de um incidente.
 
 ## Atribuição
 

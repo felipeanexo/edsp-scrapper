@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://felipeanexo.github.io/edsp-web-scrapper/sitemap.xml 
+Sitemap: https://felipeanexo.github.io/edsp-scrapper/sitemap.xml 
